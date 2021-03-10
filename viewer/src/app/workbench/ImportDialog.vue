@@ -82,6 +82,14 @@ export default defineComponent({
       }
     }
 
+    async function fetchPoePatchVersion () {
+      const res = await fetch('https://poedat.erosson.org/dat/v1/latest.json')
+      const version = await res.json()
+      poePatch.value = version.patch
+      cdnImport()
+    }
+    fetchPoePatchVersion()
+
     return {
       poePatch,
       isCdnImportRunning,
